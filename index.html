@@ -3,18 +3,24 @@
   <head>
     <meta charset="UTF-8">
     <meta name="permissions-policy" content="otp-credentials=(self 'https://embedded.com')">
-    <title>DUMMY HTML with no JS</title>
+    <title>Verify SMS Demo</title>
   </head>
 
-<body>
+  <body>
     <div style="text-align: center;">
-    <input type="text" inputmode="numeric" name="one-time-code" style="height: 30px" required/>
-    <br><br>
-    <input type="submit" value="Submit">
-    <script>
-      console.log(window.location.href);
-      console.log(window.location.hostname);
-      window.location.href = "mohan-otp"; 
-    </script>
-</div>
-</body>
+    <h1 style="background-color: blueviolet; color: aliceblue; text-align: center;">OTP Autofill Verification</h1>
+
+    <form action="/next.html" method="get">
+        Enter OTP here:
+        <input type="text" autocomplete="one-time-code" inputmode="numeric" name="one-time-code" style="height: 30px" required/>
+        <br><br>
+        <input type="submit" value="Submit">
+        <!-- <iframe src="https://embedded.com/..." allow="otp-credentials"> ... </iframe> -->
+    </form>
+
+    <script type="text/javascript" src="/webotp/index.js"></script>
+  </div>
+  </body>
+  
+</html>
+
