@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="permissions-policy" content="otp-credentials=(self 'https://embedded.com')">
+    <title>DUMMY HTML with no JS</title>
+  </head>
+
+<body>
+    <div style="text-align: center;">
+    <input type="text" inputmode="numeric" name="one-time-code" style="height: 30px" required/>
+    <br><br>
+    <input type="submit" value="Submit">
+    <script>
+      console.log(window.location.href);
+      console.log(window.location.hostname);
+      window.location.href = "mohan-otp"; 
+    </script>
+</div>
+</body>
