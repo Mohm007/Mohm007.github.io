@@ -18,6 +18,12 @@
         <!-- <iframe src="https://embedded.com/..." allow="otp-credentials"> ... </iframe> -->
     </form>
 <script>
+    if (!window.OTPCredential) {
+    console.log('Feature Not Available');
+  }
+  else{
+    console.log('Feature Available');
+  }
   if ("OTPCredential" in window) {
     window.addEventListener("DOMContentLoaded", (e) => {
       console.log("dom loaded");
