@@ -20,9 +20,11 @@
 <script>
     if (!window.OTPCredential) {
     console.log('Feature Not Available');
+    alert("feature NOT available");
   }
   else{
     console.log('Feature Available');
+    alert("feature available");
   }
   if ("OTPCredential" in window) {
     window.addEventListener("DOMContentLoaded", (e) => {
