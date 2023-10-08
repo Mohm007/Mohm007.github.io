@@ -11,7 +11,7 @@
     <h1 style="background-color: blueviolet; color: aliceblue; text-align: center;">OTP Autofill Verification</h1>
 
     <form action="/next.html" method="get">
-        Enter OTP here3:
+        Enter OTP here:
         <input type="text" autocomplete="one-time-code" name="one-time-code" style="height: 30px" required/>
         <br><br>
         <input type="submit" value="Submit">
@@ -56,6 +56,7 @@
         })
         .catch((err) => {
           console.error(err);
+          alert("There is some error in otp code block");
         });
       alert("Hard coded otp will be autofilled");
       input.value=123245;
