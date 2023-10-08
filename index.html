@@ -46,6 +46,7 @@
           otp: { transport: ["sms"] },
           signal: ac.signal,
         })
+        .then(() => {alert("OTP received");})
         .then((otp) => {
           // When the OTP is received by the app client, enter it into the form
           // input and submit the form automatically
