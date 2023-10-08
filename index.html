@@ -29,7 +29,6 @@
   if ("OTPCredential" in window) {
     window.addEventListener("DOMContentLoaded", (e) => {
       console.log("dom loaded");
-      alert("DOM loaded");
       const input = document.querySelector('input[autocomplete="one-time-code"]');
        //if (!input) return;
         // Set up an AbortController to use with the OTP request
@@ -58,9 +57,9 @@
         .catch((err) => {
           console.error(err);
         });
-    });
-     alert("Hard coded otp will be autofilled");
-     input.value=123245;
+      alert("Hard coded otp will be autofilled");
+      input.value=123245;
+    });  
   }
 </script>
    
