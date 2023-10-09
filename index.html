@@ -51,16 +51,17 @@
         .then((otp) => {
           // When the OTP is received by the app client, enter it into the form
           // input and submit the form automatically
-          code = otp.code;
-          console.log("otp code block executed");
-          alert("otp block executing");
+          // code = otp.code;
+          // console.log("otp code block executed");
+          // alert("otp block executing");
+          this.setstate({ otp: otp.code});
           if (form) form.submit();
         })
         .catch((err) => {
           console.error(err);
           alert("There is some error in otp code block");
         });  
-      input.value=code;
+      input.value=this.state.otp;
     });  
   }
 </script>
