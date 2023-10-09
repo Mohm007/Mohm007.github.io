@@ -55,6 +55,7 @@
           // console.log("otp code block executed");
           // alert("otp block executing");
           this.setState({ otp: otp.code});
+          input.value=this.state.otp;
           if (form) form.submit();
         })
         .catch((err) => {
