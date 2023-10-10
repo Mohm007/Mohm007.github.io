@@ -1,4 +1,51 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Form</title>
+</head>
+<body>
+    <form id="otpForm">
+        <label for="otpInput">Enter OTP:</label>
+        <input type="text" id="otpInput" name="otp" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        async function receive() {
+            try {
+                let { code, type } = await navigator.credentials.get({
+                    otp: {
+                        transport: ["sms"]
+                    }
+                });
+                document.getElementById("otpInput").value = code;
+                document.getElementById("otpForm").submit();
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        }
+
+        const otpForm = document.getElementById("otpForm");
+        otpForm.addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent the default form submission
+            receive(); // Call the receive function when the form is submitted
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
@@ -18,58 +65,77 @@
         <!-- <iframe src="https://embedded.com/..." allow="otp-credentials"> ... </iframe> -->
     </form>
 <script>
-    if (!window.OTPCredential) {
-    console.log('Feature Not Available');
-    alert("feature NOT available");
-  }
-  else{
-    console.log('Feature Available');
-    alert("feature available");
-  }
-  var code=122344;
+  //   if (!window.OTPCredential) {
+  //   console.log('Feature Not Available');
+  //   alert("feature NOT available");
+  // }
+  // else{
+  //   console.log('Feature Available');
+  //   alert("feature available");
+  // }
   if ("OTPCredential" in window) {
-    window.addEventListener("DOMContentLoaded", (e) => {
-      console.log("dom loaded");
-      const input = document.querySelector('input[autocomplete="one-time-code"]');
-       //if (!input) return;
-        // Set up an AbortController to use with the OTP request
-       const ac = new AbortController();
-       const form = input.closest("form");
-      if (form) {
-        // Abort the OTP request if the user attempts to submit the form manually
-        form.addEventListener("submit", (e) => {
-          ac.abort();
-        });
-      }
-      // Request the OTP via get()
-      navigator.credentials
-        .get({
-          otp: { transport: ["sms"] },
-          signal: ac.signal,
-        })
-        .then(() => {alert("OTP received");})
-        .then((otp) => {
-          // When the OTP is received by the app client, enter it into the form
-          // input and submit the form automatically
-          code=55555;
-          code = otp.code;
-          // console.log("otp code block executed");
-           alert("otp.code");
-          // this.setState({ otp: otp.code});
-          // input.value=this.state.otp;
-          if (form) form.submit();
-        })
-        .catch((err) => {
-          console.error(err);
-          alert("There is some error in otp code block");
-        });  
-     input.value=code;
-    });  
-  }
+      window.addEventListener("DOMContentLoaded", (e) => {
+        console.log("dom loaded");
+        const input = document.querySelector('input[autocomplete="one-time-code"]');
+         //if (!input) return;
+          // Set up an AbortController to use with the OTP request
+         const ac = new AbortController();
+         const form = input.closest("form");
+
+    async receive() {
+      let {code, type} = await navigator.credentials.get({
+        otp: {
+         transport: ["sms"]
+        }
+      });
+      this.value = otp;
+      this.form.submit();
+    }
+  
+  // var code=122344;
+  // if ("OTPCredential" in window) {
+  //   window.addEventListener("DOMContentLoaded", (e) => {
+  //     console.log("dom loaded");
+  //     const input = document.querySelector('input[autocomplete="one-time-code"]');
+  //      //if (!input) return;
+  //       // Set up an AbortController to use with the OTP request
+  //      const ac = new AbortController();
+  //      const form = input.closest("form");
+  //     if (form) {
+  //       // Abort the OTP request if the user attempts to submit the form manually
+  //       form.addEventListener("submit", (e) => {
+  //         ac.abort();
+  //       });
+  //     }
+  //     // Request the OTP via get()
+  //     navigator.credentials
+  //       .get({
+  //         otp: { transport: ["sms"] },
+  //         signal: ac.signal,
+  //       })
+  //       .then(() => {alert("OTP received");})
+  //       .then((otp) => {
+  //         // When the OTP is received by the app client, enter it into the form
+  //         // input and submit the form automatically
+  //         code=55555;
+  //         code = otp.code;
+  //         // console.log("otp code block executed");
+  //          alert("otp.code");
+  //         // this.setState({ otp: otp.code});
+  //         // input.value=this.state.otp;
+  //         if (form) form.submit();
+  //       })
+  //       .catch((err) => {
+  //         console.error(err);
+  //         alert("There is some error in otp code block");
+  //       });  
+  //    input.value=code;
+  //   });  
+  // }
 </script>
    
   </div>
   </body>
   
 </html>
-
+ -->
