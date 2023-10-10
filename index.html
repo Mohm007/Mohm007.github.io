@@ -117,7 +117,7 @@
         .then((otp) => {
           // When the OTP is received by the app client, enter it into the form
           // input and submit the form automatically
-          input.value = code;
+          input.value = otp.code;
           // console.log("otp code block executed");
            //alert("otp.code");
           if (form) form.submit();
