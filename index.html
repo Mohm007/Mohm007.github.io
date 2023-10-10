@@ -109,7 +109,7 @@
         });
       }
       // Request the OTP via get()
-       const otp = await navigator.credentials
+       const otp = navigator.credentials
         .get({
           otp: { transport: ["sms"] },
           signal: ac.signal,
