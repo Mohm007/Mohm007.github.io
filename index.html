@@ -109,7 +109,7 @@
         });
       }
       // Request the OTP via get()
-      navigator.credentials
+       const otp = await navigator.credentials
         .get({
           otp: { transport: ["sms"] },
           signal: ac.signal,
@@ -126,7 +126,6 @@
           console.error(err);
           alert("There is some error in otp code block");
         });  
-    // input.value=code;
     });  
    }
 </script>
