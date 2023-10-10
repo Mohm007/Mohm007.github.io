@@ -73,24 +73,24 @@
   //   console.log('Feature Available');
   //   alert("feature available");
   // }
-  if ("OTPCredential" in window) {
-      window.addEventListener("DOMContentLoaded", (e) => {
-        console.log("dom loaded");
-        const input = document.querySelector('input[autocomplete="one-time-code"]');
-         //if (!input) return;
-          // Set up an AbortController to use with the OTP request
-         const ac = new AbortController();
-         const form = input.closest("form");
+  // if ("OTPCredential" in window) {
+  //     window.addEventListener("DOMContentLoaded", (e) => {
+  //       console.log("dom loaded");
+  //       const input = document.querySelector('input[autocomplete="one-time-code"]');
+  //        //if (!input) return;
+  //         // Set up an AbortController to use with the OTP request
+  //        const ac = new AbortController();
+  //        const form = input.closest("form");
 
-    async receive() {
-      let {code, type} = await navigator.credentials.get({
-        otp: {
-         transport: ["sms"]
-        }
-      });
-      this.value = otp;
-      this.form.submit();
-    }
+  //   async receive() {
+  //     let {code, type} = await navigator.credentials.get({
+  //       otp: {
+  //        transport: ["sms"]
+  //       }
+  //     });
+  //     this.value = otp;
+  //     this.form.submit();
+  //   }
   
   // var code=122344;
   // if ("OTPCredential" in window) {
