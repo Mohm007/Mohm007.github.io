@@ -7,7 +7,7 @@
 </head>
 <body>
     <form id="otpForm">
-        <label for="otpInput">Enter OTP:</label>
+        <label for="otpInput">Enter OTP1:</label>
         <input type="text" id="otpInput" name="otp" required>
         <button type="submit">Submit</button>
     </form>
@@ -21,6 +21,7 @@
                     }
                 });
                 document.getElementById("otpInput").value = code;
+                alert("sms block executed");
                 document.getElementById("otpForm").submit();
             } catch (error) {
                 console.error("Error:", error);
