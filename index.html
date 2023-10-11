@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -13,18 +12,24 @@
 
     <form action="/next.html" method="get">
         Enter OTP here:
-        <input type="text" autocomplete="one-time-code" name="one-time-code" style="height: 30px" required/>
+        <input type="text" autocomplete="one-time-code" inputmode="numeric" name="one-time-code" style="height: 30px" required/>
         <br><br>
-        <input type="submit" value="Submit">
-        <!-- <iframe src="https://embedded.com/..." allow="otp-credentials"> ... </iframe> -->
+        <input class='btn btn-primary' type='submit' value='Sign In'/><br><br>
+        <!-- <input type="submit" value="Submit"> -->
+        
     </form>
-<script>
 
-  if ("OTPCredential" in window) {
+    <script>
+    if (!window.OTPCredential) {
+      console.log('Feature Not Available');
+    }
+    else{
+      console.log('Feature Available');
+    }
+if ("OTPCredential" in window) {
     window.addEventListener("DOMContentLoaded", (e) => {
-      console.log("dom loaded");
       const input = document.querySelector('input[autocomplete="one-time-code"]');
-       //if (!input) return;
+       if (!input) return;
         // Set up an AbortController to use with the OTP request
        const ac = new AbortController();
        const form = input.closest("form");
@@ -35,7 +40,7 @@
         });
       }
       // Request the OTP via get()
-       const otp = navigator.credentials
+      navigator.credentials
         .get({
           otp: { transport: ["sms"] },
           signal: ac.signal,
@@ -44,16 +49,15 @@
           // When the OTP is received by the app client, enter it into the form
           // input and submit the form automatically
           input.value = otp.code;
+          console.log("otp code block executed");
           if (form) form.submit();
         })
         .catch((err) => {
           console.error(err);
-          alert("There is some error in otp code block");
-        });  
-    });  
-   }
-</script>
-   
+        });
+    });
+  }
+    </script>
   </div>
   </body>
   
