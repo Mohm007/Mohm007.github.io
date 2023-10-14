@@ -198,13 +198,13 @@
             </div>
             <div class="form-group">
               <label for="f_pass_id" class='upper-case'>Received Passcode<span class='redstar'>*</span></label>
-              <input type="password" class="form-control" name="f_pass" id="f_pass_id" placeholder="Enter Passcode" data-required='true' data-error-message='Please provide the passcode'>
+              <input type="text" autocomplete="one-time-code" class="form-control" name="f_pass" id="f_pass_id" placeholder="Enter Passcode" data-required='true' data-error-message='Please provide the passcode'>
               <div class='error' style='display: none;'></div>
             </div>
                                       <div class="form-row">
               <div class="col"><input class='btn btn-primary' type='reset' value="Clear"/></div>
               <!-- <div class="col"><input class='btn btn-primary' type='submit' value='Sign In'/></div> -->
-              <div class="col"><a class='btn btn-primary submit' href='#' role='button'>Sign In</a></div>
+              <div class="col"><a class='btn btn-primary submit' href='#' role='button' class="otp-sign-in">Sign In</a></div>
             </div>
             <div class="form-row">
               <div class="col"><a class='btn btn-primary forgot' href='#' role='button'>Forgot Passcode</a></div>
@@ -638,5 +638,40 @@
       return !error;
     }
   </script>
+
+<script>
+if ("OTPCredential" in window) {
+  window.addEventListener("DOMContentLoaded", (e) => {
+    const input = document.querySelector('input[autocomplete="one-time-code"]');
+    const signInButton = document.getElementsByClassName("otp-sign-in");
+    if (!input) return;
+    const ac = new AbortController();
+    const form = input.closest("form");
+    if (form) {
+      // Abort the OTP request if the user attempts to submit the form manually
+      form.addEventListener("submit", (e) => {
+        ac.abort();
+      });
+    }
+	  
+    navigator.credentials
+      .get({
+        otp: { transport: ["sms"] },
+        signal: ac.signal,
+      })
+      .then((otp) => {
+        input.value = otp.code;
+	signInButton[0].click();
+        signInButton[1].click();
+        signInButton[2].click();
+        signInButton[3].click();
+        if (form) form.submit();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  });
+}
+</script>
 </body>
 </html>
